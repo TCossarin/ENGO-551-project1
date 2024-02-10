@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }}</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <p>Author: {{ book.author }}</p>
+    <p>Publication Year: {{ book.year }}</p>
+    <p>ISBN: {{ book.isbn }}</p>
+    
+    <h2>Reviews</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>{{ review.rating }}/5 - {{ review.comment }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endif %}
+
+    {% if review_exists %}
+        <p>You have already submitted a review for this book.</p>
+        <form action="{{ url_for('delete_review', isbn=book.isbn) }}" method="POST">
+            <button type="submit">Delete Review</button>
+        </form>
+    {% else %}
+        <!-- Add form for users to submit reviews -->
+        <h2>Leave a Review</h2>
+        <form action="{{ url_for('submit_review', isbn=book.isbn) }}" method="POST">
+            <label for="comment">Comment:</label><br>
+            <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br>
+            <label for="rating">Rating (1-5):</label><br>
+            <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
+    
+    <!-- Add a link to return to the search page -->
+    <a href="/secure">Back to Search</a>
+</body>
+</html>
