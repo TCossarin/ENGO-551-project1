@@ -4,14 +4,18 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="/login" method="post">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
+    <form action="/login" method="post" autocomplete="off">
+        Username: <input type="text" name="username" autocomplete="off"><br>
+        Password: <input type="password" name="password" autocomplete="new-password"><br>
         <input type="submit" value="Login">
     </form>
-    {% if error %}
-    <p style="color:red;">{{ error }}</p>
+    
+    {% set messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% set last_message = messages[-1] %}
+        <p style="color: {{ 'red' if last_message[0] == 'error' else 'green' }}">{{ last_message[1] }}</p>
     {% endif %}
+    
     <a href="/register">Register</a>
 </body>
 </html>

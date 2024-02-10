@@ -26,7 +26,6 @@
             <button type="submit">Delete Review</button>
         </form>
     {% else %}
-        <!-- Add form for users to submit reviews -->
         <h2>Leave a Review</h2>
         <form action="{{ url_for('submit_review', isbn=book.isbn) }}" method="POST">
             <label for="comment">Comment:</label><br>
@@ -37,7 +36,6 @@
         </form>
     {% endif %}
     
-    <!-- Add a link to return to the search page -->
-    <a href="/secure">Back to Search</a>
+    <a href="/">Back to Search</a>
 </body>
 </html>
