@@ -4,6 +4,8 @@ ENGO 551
 
 Author: Tomas Cossarin
 
+Video link: https://youtu.be/LIDCKDAS2iE
+
 This website is for reviewing books. Users can make an account to search for books by ID, title, or author. They can also leave reviews and read reviews from other users.
 
 application.py - main py file for website
