@@ -14,7 +14,7 @@ db = scoped_session(sessionmaker(bind=engine))
 @app.route('/')
 def home():                             # Home page route - redirects to login page if user is not logged in
     if 'username' in session:           # If user is logged in, show the home page
-        return render_template('home.html')
+        return render_template('home.html', username=session['username'])
     
     return redirect(url_for('login'))   # Back to login page if no user is logged in
 
